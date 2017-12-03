@@ -1,0 +1,12 @@
+Project: AlarmBps
+	Branches:
+	☼		dev1 - First Design branch
+      dev2 - Försök känna av andra notifikationer från andra appar. 
+			----
+			ext1 - Testing
+
+	Details:
+			dev1:
+				Jag tänker mig ett basic utseende med en knapp för notifikation. Tryck på den, få upp en notifikation. Kanske även inkluderar en timer eller nåt.
+      dev2:
+        Försök komma åt och läsa notifikationer från systemet in till appen. Åtminstone från en sms eller mail app.
