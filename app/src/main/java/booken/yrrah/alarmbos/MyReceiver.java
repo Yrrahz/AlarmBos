@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.Toast;
 
-public class MyReceiver extends BroadcastReceiver{
+import java.net.DatagramPacket;
+import java.net.DatagramSocket;
+import java.net.InetAddress;
+
+public class MyReceiver extends BroadcastReceiver implements Runnable{
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -29,6 +33,24 @@ public class MyReceiver extends BroadcastReceiver{
             Log.d("testReceiver", "SMS was received");
 
 
+        }
+    }
+
+    @Override
+    public void run() {
+        try{
+            String messageStr = "feed";
+            int server_port = 8888;
+            InetAddress local = InetAddress.getByName("10.0.2.2");
+            int msg_length = messageStr.length();
+            byte[] message = messageStr.getBytes();
+
+            DatagramSocket s = new DatagramSocket();
+
+            DatagramPacket p = new DatagramPacket(message, msg_length, local, server_port);
+            s.send(p);
+        }catch (Exception e){
+            Log.d("testReceiver", "Exception was caught in run() in MyReceiver.java");
         }
     }
 }
