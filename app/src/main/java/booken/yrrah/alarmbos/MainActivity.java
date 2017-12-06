@@ -19,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void notifyMeButton(View view){
 
-         // A small notification. Nothing much
+         // A small notification. Nothing much, no sound, no wake-up.
         Intent resultIntent = new Intent(this, ResultActivity.class);
         PendingIntent pendingIntent = PendingIntent.getActivity(this,0,resultIntent,PendingIntent.FLAG_UPDATE_CURRENT);
 
@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
         NotificationCompat.Builder mBuilder =
                 (NotificationCompat.Builder) new NotificationCompat.Builder(this)
                         .setSmallIcon(R.drawable.firstnotificationimage) // Appears that this must exist.
-                        .setContentTitle("My notification")
-                        .setContentText("Hello World!")
+                        .setContentTitle("Service notification")
+                        .setContentText("Service has started")
                         .setContentIntent(pendingIntent);
 
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
@@ -36,11 +36,11 @@ public class MainActivity extends AppCompatActivity {
         manager.notify(notificationID, mBuilder.build());
 
 
-        /* // This is the Service!
+         // This is the Service!
         Toast.makeText(getApplicationContext(),"NotifyMe is clicked.", Toast.LENGTH_SHORT).show();
 
         Intent intent = new Intent(this, AlarmBosService.class);
-        //intent.setAction("booken.yrrah.alarmbos.action.FOO");
-        startService(intent);*/
+        intent.setAction("notificationReceiver");
+        startService(intent);
     }
 }

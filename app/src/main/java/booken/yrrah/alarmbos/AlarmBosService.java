@@ -3,6 +3,8 @@ package booken.yrrah.alarmbos;
 import android.app.IntentService;
 import android.content.Intent;
 import android.content.Context;
+import android.os.SystemClock;
+import android.widget.Toast;
 
 /**
  * An {@link IntentService} subclass for handling asynchronous task requests in
@@ -14,7 +16,7 @@ import android.content.Context;
 public class AlarmBosService extends IntentService {
     // TODO: Rename actions, choose action names that describe tasks that this
     // IntentService can perform, e.g. ACTION_FETCH_NEW_ITEMS
-    private static final String ACTION_FOO = "booken.yrrah.alarmbos.action.FOO";
+    private static final String ACTION_NR = "notificationReceiver";
     private static final String ACTION_BAZ = "booken.yrrah.alarmbos.action.BAZ";
 
     // TODO: Rename parameters
@@ -34,7 +36,7 @@ public class AlarmBosService extends IntentService {
     // TODO: Customize helper method
     public static void startActionFoo(Context context, String param1, String param2) {
         Intent intent = new Intent(context, AlarmBosService.class);
-        intent.setAction(ACTION_FOO);
+        intent.setAction(ACTION_NR);
         intent.putExtra(EXTRA_PARAM1, param1);
         intent.putExtra(EXTRA_PARAM2, param2);
         context.startService(intent);
@@ -59,10 +61,10 @@ public class AlarmBosService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         if (intent != null) {
             final String action = intent.getAction();
-            if (ACTION_FOO.equals(action)) {
+            if (ACTION_NR.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_PARAM1);
                 final String param2 = intent.getStringExtra(EXTRA_PARAM2);
-                handleActionFoo(param1, param2);
+                handleActionNR(param1, param2);
             } else if (ACTION_BAZ.equals(action)) {
                 final String param1 = intent.getStringExtra(EXTRA_PARAM1);
                 final String param2 = intent.getStringExtra(EXTRA_PARAM2);
@@ -72,12 +74,14 @@ public class AlarmBosService extends IntentService {
     }
 
     /**
-     * Handle action Foo in the provided background thread with the provided
-     * parameters.
+     * Handle action NR in the provided background thread with the provided
+     * parameters. These params could contain things like an IP-address or similar...
      */
-    private void handleActionFoo(String param1, String param2) {
-        // TODO: Handle action Foo
-        throw new UnsupportedOperationException("Not yet implemented");
+    private void handleActionNR(String param1, String param2) {
+
+        SystemClock.sleep(10000);
+        // Service doing stuff.
+
     }
 
     /**
