@@ -10,8 +10,8 @@ public class MyReceiver extends BroadcastReceiver{
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        // TODO: This method is called when the BroadcastReceiver is receiving an Intent broadcast.
-        //Bundle extras = intent.getExtras();
+
+        // TODO : Maybe should use a switch/Case statement here... We might get a lot of intent actions.
         int duration = Toast.LENGTH_LONG;
         Log.d("testReceiver", "Test begins...");
         if(intent.getAction().equals("android.intent.action.AIRPLANE_MODE")){
@@ -28,7 +28,8 @@ public class MyReceiver extends BroadcastReceiver{
             toast.show();
             Log.d("testReceiver", "SMS was received");
 
-
+            UDPTask udpTask = new UDPTask();
+            udpTask.execute();
         }
     }
 }
