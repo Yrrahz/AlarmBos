@@ -37,7 +37,7 @@ public class UDPTask extends AsyncTask<String,String,String> {
 
         try {
             s = new DatagramSocket();
-            InetAddress inetAddress = InetAddress.getByName("192.168.43.102"); //ip of destination
+            InetAddress inetAddress = InetAddress.getByName("192.168.1.252"); //ip of destination
             int msg_length=udpMessage.length();
             byte[] byteUDPMessage = udpMessage.getBytes();
             DatagramPacket p = new DatagramPacket(byteUDPMessage, msg_length,inetAddress,port);
